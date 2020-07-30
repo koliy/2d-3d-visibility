@@ -1,36 +1,31 @@
-Some 2D-3D visibility experiment
+一些2D-3D可见度实验(转载)
 ================================
-
+一个视线遮挡，可见性的demo
 [Demo](https://gfycat.com/KindWelllitIbis)
 
-I had an idea for a simple 2d/3d visibility effect, and this is the result in
-Unity.  Basically it applies the "soft shadows" effect [from here](https://github.com/mattdesl/lwjgl-basics/wiki/2D-Pixel-Perfect-Shadows) to a 
-3d world. 
+[翻译]
+我有一个简单的2d/3d视觉效果的想法，这就是Unity的结果。基本上它应用了“软阴影”的效果从这里到一个3d世界。
 
-Basically, what's happening is that there's two cameras: one 2d camera and one
-3d camera. The 2d camera projects the walls into an "occlusion texture", and
-that texture is used to generate the 2d visibility texture. That visibility map is
-then rendered into a "cumulative visibility texture", which represents the
-black/white areas in the scene. 
 
-When it comes time to render the 3d objects, you pass the VP matrix of the
-orthographic camera to the shader and project every point in the orthographic
-cameras space. The UV coordinate of each vertex in the visibility textures is
-passed to the fragment shader. In the fragment shader, the interpolated value is
-used to figure out how to render by sampling the visibility textures. 
 
-Obviously, many optimizations and visual improvements can be made, the most
-obvious one being applying a circular blur to the visibility texture to give it
-a soft blur. There are also some annoying visual artifacts, mostly related to
-the visibility calculation algorithm (though those might go away as well with
-some blurring). 
+基本上，这里有两个摄像头:一个2d摄像头和一个3d摄像头。2d摄像机将墙壁投射到一个“遮挡纹理”中，该纹理用于生成2d可见纹理。该可见性贴图随后被渲染成一个“累积可见性纹理”，它代表场景中的黑白区域。
 
-But this was just a weekend project for me, and I think it's kind-of a neat
-trick. With some work this could be used in a proper game.
 
-Just a warning: I haven't one through and properly cleaned up the source and
-shader code, so it might be a bit messy. If you have any questions, let me know!
-My email is my github username @ gmail.com.   
 
-The code is MIT licensed, so you can pretty much do whatever with it, but if you
-do use it for something, I would really appreciate to hear about it!
+当渲染3d对象的时候，你将直角摄像机的VP矩阵传递给着色器，并投射直角摄像机空间中的每个点。可见纹理中每个顶点的UV坐标被传递给片段着色器。在片段着色器中，插值值被用来找出如何通过采样可见纹理来渲染。
+
+
+
+显然，可以进行许多优化和视觉改进，最明显的是应用圆形模糊的可见性纹理，给它一个软模糊。还有一些恼人的视觉伪影，大多与可见性计算算法有关(尽管有些模糊也会消除)。
+
+
+
+但这只是我的一个周末项目，我认为这是一种巧妙的技巧。通过一些工作，这可以在一个适当的游戏中使用。
+
+
+
+只是一个警告:我还没有通过和适当清理源代码和着色器代码，所以它可能有点混乱。如果你有任何问题，让我知道!我的邮箱是我的github用户名@ gmail.com。
+
+
+
+代码是MIT授权的，所以你可以用它做任何事情，但是如果你确实用它做了一些事情，我将非常感激听到它!
